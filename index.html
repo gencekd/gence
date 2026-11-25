@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+<base href="./model-lab/">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#111a21"><title>Blind Dinner · Topkapı VR</title>
+<link rel="stylesheet" href="./css/style.css">
+<script type="importmap">{"imports":{"three":"../vendor/three.module.min.js","three/addons/":"../vendor/"}}</script>
+</head><body>
+<main id="app">
+<section id="stage" aria-label="Interactive architectural environment"><div id="viewport"></div><div class="stage-label"><span>İÇ MEKÂN</span><strong>TOPKAPI SARAYI · MATBAH-I ÂMİRE</strong></div><div class="stage-bottom"><span>1:1 · RESTORAN</span><span id="view-mode">DESKTOP</span></div></section>
+<aside id="sidebar">
+<header><a href="../atlas.html" style="color:inherit">Venedik Lagünü Atlası ↗</a><div class="eyebrow">TOPKAPI SARAYI MUTFAKLARI</div><h1>Blind <span>Dinner</span></h1><p>Vestiyerden açık mutfağa uzanan restoranı insan ölçeğinde gez.</p></header>
+<div class="actions"><button id="vr" class="primary" disabled>Enter VR</button><button id="start" disabled>Start Camera</button><button id="stop" disabled>Stop Camera</button><button id="reset" disabled>Reset Position</button></div>
+<p id="notice" role="status" aria-live="polite">Topkapı modeli yükleniyor…</p>
+<p class="small">VR içinde <b>•••</b> düğmesine elinle işaret edip başparmağınla işaret parmağını birleştir. Kumanda tetiğiyle veya bir düğmeye 1,2 saniye bakarak da seçim yapabilirsin.</p>
+<section class="panel"><h2>El hareketleri</h2><div class="gesture"><span class="number">01</span><span>Başparmak + işaret</span><b>İleri yürü ↑</b></div><div class="gesture"><span class="number">02</span><span>Başparmak + serçe</span><b>Sağa dön ↻</b></div><div class="gesture"><span class="number">03</span><span>Başparmak + yüzük</span><b>Sola dön ↺</b></div><p class="small">Sağ veya sol elini kullan. Hareketi sürdürmek için parmaklarını temas halinde tut, durmak için ayır. Masaüstünde bakış yönünü sürükleyerek değiştir.</p></section>
+<section class="panel"><h2>Camera preview <span id="camera-state" class="tag">OFF</span></h2><div id="preview"><video id="video" muted playsinline></video><canvas id="landmarks"></canvas><span id="preview-placeholder">Camera disabled</span></div><p class="small">Camera starts only on request. Frames are processed on this device.</p></section>
+<section class="panel"><h2>Live diagnostics</h2><dl id="debug"><dt>XR session</dt><dd id="d-xr">—</dd><dt>Reference space</dt><dd id="d-ref">—</dd><dt>Hand tracking</dt><dd id="d-track">—</dd><dt>Active hand</dt><dd id="d-hand">—</dd><dt>Active pinch</dt><dd id="d-pinch">—</dd><dt>Forward speed</dt><dd id="d-speed">0 m/s</dd><dt>Rotation speed</dt><dd id="d-turn">0 °/s</dd><dt>Scale</dt><dd>1:70 → 1:1</dd><dt>Eye height</dt><dd id="d-eye">1.60 m</dd><dt>FPS</dt><dd id="d-fps">—</dd></dl></section>
+<section class="panel"><h2>Locomotion tuning</h2><label for="speed">Walk speed <output id="speed-val">0.65 m/s</output></label><input id="speed" type="range" min="0.15" max="1.4" step="0.05" value="0.65"><label for="turn">Turn speed <output id="turn-val">30 °/s</output></label><input id="turn" type="range" min="10" max="75" step="5" value="30"><label for="threshold">Pinch sensitivity <output id="threshold-val">0.24</output></label><input id="threshold" type="range" min="0.14" max="0.38" step="0.01" value="0.24"></section>
+<section class="panel"><h2>Architecture model</h2><label for="units">Source units</label><select id="units"><option value="mini">1:70 model in metres</option><option selected value="full">1:1 model in metres (standard glTF)</option><option value="mini-mm">1:70 model coordinates in mm</option><option value="full-mm">1:1 model coordinates in mm</option></select><label for="model-file">Local self-contained GLB / glTF</label><input id="model-file" type="file" accept=".glb,.gltf"><label for="model-url">Model URL (relative or CORS-enabled)</label><div class="url-row"><input id="model-url" placeholder="./assets/models/building.glb"><button id="load-model" disabled>Load</button></div><button id="restore-model" disabled>Topkapı modelini tekrar aç</button><p class="small">Y-up, floor at Y=0, entry near origin. External glTF dependencies: use URL loading. No wall collision is implemented.</p></section>
+<footer>THREE.JS R170 · MEDIAPIPE 0.10.21<br>Use a clear physical space; stop if uncomfortable.</footer>
+</aside></main><noscript>JavaScript is required.</noscript>
+<script>window.addEventListener('error', e => { if (e.target?.tagName === 'SCRIPT' || e.message) {const n=document.getElementById('notice'); if(n && n.textContent.startsWith('Loading application')) n.textContent='Application could not start. Check network/CDN, WebGL and browser support.';} }, true);</script>
+<script type="module" src="./js/main.js"></script>
+</body></html>
